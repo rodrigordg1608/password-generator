@@ -9,18 +9,18 @@ from app.validators import is_password_valid
 
 
 def _prompt_mode() -> str:
-    """Prompt the user to choose manual or automatic mode."""
+    """Solicite ao usuário que escolha o modo manual ou automático."""
     while True:
         choice = input(
-            "Choose mode: [1] automatic generation or [2] manual password: "
+            "Selecione o modo: [1] geração automática ou [2] senha manual: "
         ).strip()
 
         if choice == "1":
-            return "automatic"
+            return "automatico"
         if choice == "2":
             return "manual"
 
-        print("Invalid option. Enter 1 for automatic or 2 for manual.")
+        print("Opção inválida. Digite 1 para automático ou 2 para manual.")
 
 
 def _resolve_character_options(args: argparse.Namespace) -> dict[str, bool]:
@@ -69,7 +69,7 @@ def _resolve_password(
         if args.password is not None:
             return args.password
 
-        return input("Enter your password: ").strip()
+        return input("Entra com sua senha: ").strip()
 
     if args.password is not None:
         return args.password
@@ -143,9 +143,9 @@ def main() -> None:
         symbols=character_options["symbols"],
     )
 
-    print(f"Password: {password}")
-    print(f"Mode: {mode}")
-    print(f"Validation: {'valid' if is_valid else 'invalid'}")
+    print(f"Senha: {password}")
+    print(f"Modo: {mode}")
+    print(f"Validation: {'valido' if is_valid else 'invalido'}")
 
 
 if __name__ == "__main__":
