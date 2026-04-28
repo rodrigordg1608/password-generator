@@ -46,6 +46,39 @@ Senha manual:
 python -m app.cli --mode manual --password MinhaSenha123! --uppercase --lowercase --numbers --symbols
 ```
 
+### Diagrama
+
+Fluxo principal da aplicacao:
+
+```mermaid
+flowchart TD
+    A[Inicio] --> B[Executa app/cli.py]
+    B --> C{Modo escolhido}
+    C -->|Automatico| D[Gerar senha]
+    C -->|Manual| E[Informar senha]
+    D --> F[app/generator.py]
+    F --> G[Seleciona grupos de caracteres]
+    G --> H[Valida opcoes]
+    H --> I[Gera senha com secrets]
+    E --> J[Recebe senha do usuario]
+    I --> K[app/validators.py]
+    J --> K
+    K --> L[Valida regras da senha]
+    L --> M[Mostra resultado no terminal]
+```
+
+Estrutura dos modulos:
+
+```mermaid
+flowchart LR
+    A[cli.py] --> B[generator.py]
+    A --> C[validators.py]
+    B --> C
+    D[test_generator.py] --> A
+    D --> B
+    D --> C
+```
+
 ### Testes
 
 ```powershell
